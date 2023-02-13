@@ -33,7 +33,7 @@ class BooksController < ApplicationController
     book_params = params.require(:book).permit(:year, :month, :inout, :category, :amount)
     if @book.update(book_params)
       flash[:notice] = "更新が完了しました"
-      redirect_to books_path
+      redirect_to book_path
     else
       flash.now[:alert] = "更新に失敗しました"
       render :edit
