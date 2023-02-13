@@ -15,7 +15,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    book_params = params.require(:book).permit(:year, :month, :inout, :category, :amount)
+    # book_params = params.require(:book).permit(:year, :month, :inout, :category, :amount)
     @book = Book.new(book_params)
     if @book.save
       flash[:notice] = "家計簿に#{@book.year}年#{@book.month}月#{@book.category}を登録しました"
@@ -30,7 +30,7 @@ class BooksController < ApplicationController
   end
 
   def update
-    book_params = params.require(:book).permit(:year, :month, :inout, :category, :amount)
+    # book_params = params.require(:book).permit(:year, :month, :inout, :category, :amount)
     if @book.update(book_params)
       flash[:notice] = "更新が完了しました"
       redirect_to book_path
@@ -50,5 +50,9 @@ class BooksController < ApplicationController
 
   def set_book
     @book = Book.find(params[:id])
+  end
+
+  def book_params
+    params.require(:book).permit(:year, :month, :inout, :category, :amount)
   end
 end
